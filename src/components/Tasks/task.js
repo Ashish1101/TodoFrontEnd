@@ -16,8 +16,9 @@ const Task = ({getTask , task : {tasks , error , loading}}) => {
     
     return (
         <div>
-            {tasks.length !== 0 ? tasks.map(task => <TaskItems  id={task._id}  title={task.title } key={task._id} />) 
-            : (<div className="text-center font-bold">You have not task to show</div>)}
+            {/* {tasks.length > 0 ? tasks.map(task => <TaskItems  id={task._id}  title={task.title } key={task._id} />) 
+            : (<div className="text-center font-bold">You have not task to show</div>)} */}
+            Hello
         </div>
     )
 }
