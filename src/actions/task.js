@@ -1,6 +1,8 @@
 import {
   ADD_ITEM,
   ADD_ITEM_FAIL,
+  DELETE_ITEM,
+  DELETE_ITEM_FAIL,
   GET_ITEMS,
   GET_ITEMS_FAIL
 } from './types'
@@ -15,11 +17,11 @@ export const addTask =  (taskData) => async dispatch => {
         }
     } 
     try {
-         const res = await axios.post('/tasks/' , taskData , config);
-         console.log(res)
+         await axios.post('/tasks/' , taskData , config);
+         
          dispatch({
              type : ADD_ITEM,
-             payload : res.data
+            payload : taskData
          })
      } catch (err) {
          dispatch({
@@ -40,6 +42,21 @@ export const getTask = () => async dispatch => {
         dispatch({
             type : GET_ITEMS_FAIL,
             payload : err.response.data
+        })
+    }
+}
+
+export const deleteItem = (id) => async dispatch => {
+    try {
+        await axios.delete(`/tasks/${id}`);
+        dispatch({
+            type : DELETE_ITEM,
+            payload : id
+        })
+    } catch (err) {
+        dispatch({
+            type : DELETE_ITEM_FAIL,
+            payload : err.response.data.msg
         })
     }
 }
