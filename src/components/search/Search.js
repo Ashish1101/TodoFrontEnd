@@ -4,7 +4,7 @@ import {addTask} from '../../actions/task'
 import * as Yup from 'yup'
 import {useFormik} from 'formik'
 const Search = ({addTask , task}) => {
-  
+    
     const formik = useFormik({
       initialValues : {
         title : ''
@@ -21,6 +21,8 @@ const Search = ({addTask , task}) => {
       }
 
     })
+
+    console.log(formik)
   
     return (
         
@@ -29,7 +31,7 @@ const Search = ({addTask , task}) => {
                   name="title"
                   placeholder="Add Task"
                   {...formik.getFieldProps("title")}
-                  className="shadow appearance-none border placeholder-indigo-600 rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                  className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 <input type="submit" className="bg-blue-700 shadow-lg min-w-full py-2" value="Add" />
                 {formik.touched.title && formik.errors.title ? (
           <p className="text-red-400">{formik.errors.title}</p>

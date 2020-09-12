@@ -2,7 +2,7 @@ import React from 'react'
 import {MdDelete} from 'react-icons/md'
 import {deleteItem} from '../../actions/task'
 import {connect} from 'react-redux'
-import Loading from './Spinner'
+// import Loading from './Spinner'
 
 const TaskItem= ({ title , id , deleteItem  , loading}) => {
    
