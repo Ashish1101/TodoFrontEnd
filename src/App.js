@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Provider} from 'react-redux'
+import {store , persistor}  from './store'
+import Navbar from './components/Layout/Navbar'
+import MainLayout from './components/Layout/MainLayout'
+//import {Router , Route , Switch} from 'react-router'
+import {BrowserRouter as Router , Route , Switch} from 'react-router-dom'
+import Login from './components/Auth/Login'
+import Register from './components/Auth/Register'
+import SetAuthToken from './utils/Token'
+import { PersistGate } from 'redux-persist/integration/react'
+import PrivateRoute from './components/PrivateRoute'
+if(localStorage.token) {
+   SetAuthToken(localStorage.token)
+}
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <Provider store={store}>
+       <PersistGate loading={null} persistor={persistor}>
+        {/* <MainLayout /> */}
+        <Router>
+        <Navbar />
+           <Switch>
+              <PrivateRoute exact path="/main"  component={MainLayout} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+           </Switch>
+        </Router>
+        </PersistGate>
+     </Provider>
   );
 }
 
