@@ -18,11 +18,13 @@ const Search = ({addTask , task}) => {
         console.log(values)
         console.log(JSON.stringify(values, null, 2));
         addTask(values)
-      }
+        
+      },
+
 
     })
 
-    console.log(formik)
+ 
   
     return (
         
