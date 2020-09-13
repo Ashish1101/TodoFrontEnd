@@ -41,7 +41,7 @@ export const getTask = () => async dispatch => {
     } catch (err) {
         dispatch({
             type : GET_ITEMS_FAIL,
-            payload : err.response.data
+            payload : err.response.statusText
         })
     }
 }

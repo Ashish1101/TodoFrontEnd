@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import TaskItems from './TaskItems'
 import {getTask } from '../../actions/task'
 // import Loading from './Spinner'
-const Task = ({getTask , task}) => {
+const Task = ({getTask , tasks}) => {
     useEffect(() => {
         getTask()
 
@@ -12,20 +12,19 @@ const Task = ({getTask , task}) => {
         //eslint-disable-next-line
     }, [])
    
-   
+   console.log('tasks', tasks)
 
     
     return (
-        <div>
-            {task.tasks.length !== 0 ? task.tasks.map((item) => <TaskItems key={item._id} id={item._id}  title={item.title } date={item.date} />) 
-            : (<div className="text-center font-bold">You have not task to show</div>)}
-
-        </div>
+       <Fragment>
+           {tasks.length !== 0 ? tasks.map((item) => 
+           <TaskItems key={item._id} date={item.date} title={item.title} id={item._id} />) : (<div>You have no active tasks</div>)}
+       </Fragment>
     )
 }
 
 const mapStateToProps = state => ({
-    task : state.task
+    tasks: state.task.tasks
 })
 
 export default connect(mapStateToProps , {getTask })(Task)
