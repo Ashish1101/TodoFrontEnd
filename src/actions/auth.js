@@ -16,7 +16,7 @@ import axios from 'axios'
 //register user
 export const addUser = (data) => async dispatch => {
     try{
-        const res = await axios.post('/register/' , data);
+        const res = await axios.post('/register/' , data , {withCredentials : true});
         dispatch({
             type: ADD_USER,
             payload: res.data 
@@ -37,7 +37,7 @@ export const loadUser = () => async dispatch => {
     }
       try {
         
-      const res = await axios.get('/auth/user')
+      const res = await axios.get('/auth/user' , {withCredentials : true})
       dispatch({
           type : LOAD_USER,
           payload: res.data
@@ -62,7 +62,7 @@ export const loginUser = (userData) => async dispatch => {
                'Content-Type':'application/json'
             }
         }
-        const res = await axios.post('/auth/' , userData , config);
+        const res = await axios.post('/auth/' , userData , {config , withCredentials : true});
 
         dispatch({
             type: LOGIN_USER,

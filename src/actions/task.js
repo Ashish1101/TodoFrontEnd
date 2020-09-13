@@ -17,7 +17,7 @@ export const addTask =  (taskData) => async dispatch => {
         }
     } 
     try {
-         await axios.post('/tasks/' , taskData , config);
+         await axios.post('/tasks/' , taskData , {config , withCredentials : true});
          
          dispatch({
              type : ADD_ITEM,
@@ -33,7 +33,7 @@ export const addTask =  (taskData) => async dispatch => {
 
 export const getTask = () => async dispatch => {
     try {
-        const res = await axios.get('/tasks/')
+        const res = await axios.get('/tasks/' , {withCredentials : true})
         dispatch({
             type : GET_ITEMS,
             payload : res.data
@@ -48,7 +48,7 @@ export const getTask = () => async dispatch => {
 
 export const deleteItem = (id) => async dispatch => {
     try {
-        await axios.delete(`/tasks/${id}`);
+        await axios.delete(`/tasks/${id}`, {withCredentials: true});
         dispatch({
             type : DELETE_ITEM,
             payload : id
