@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import TaskItems from './TaskItems'
 import {getTask } from '../../actions/task'
 // import Loading from './Spinner'
-const Task = ({getTask , task : {tasks , error , loading}}) => {
+const Task = ({getTask , task}) => {
     useEffect(() => {
         getTask()
 
@@ -13,12 +13,13 @@ const Task = ({getTask , task : {tasks , error , loading}}) => {
     }, [])
    
    
+
     
     return (
         <div>
-            {/* {tasks.length > 0 ? tasks.map(task => <TaskItems  id={task._id}  title={task.title } key={task._id} />) 
-            : (<div className="text-center font-bold">You have not task to show</div>)} */}
-            Hello
+            {task.tasks.length !== 0 ? task.tasks.map((item) => <TaskItems key={item._id} id={item._id}  title={item.title } date={item.date} />) 
+            : (<div className="text-center font-bold">You have not task to show</div>)}
+
         </div>
     )
 }

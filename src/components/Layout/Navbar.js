@@ -22,9 +22,9 @@ const Navbar = ({loadUser , logOut , user : {isAuthenticated , user}}) => {
     }
     return (
         <div className="bg-blue-700 h-20 flex justify-between sticky top-0 items-center shadow-xl">
-           <div className="ml-4 pl-16 text-2xl hover:text-white cursor-pointer ">MyTodo</div>
+           <div className="ml-4 sm:pl-16 text-2xl hover:text-white cursor-pointer ">MyTodo</div>
              {isAuthenticated ? (
-                <ul className="flex mr-4 px-4 space-x-4">
+                <ul className="flex  px-4 space-x-2">
                   <li className="sm:hidden">Welcome {user.name}</li>
                   <li onClick={logout} className="sm:pr-16 cursor-pointer hover:text-white">Logout</li>
                </ul>
